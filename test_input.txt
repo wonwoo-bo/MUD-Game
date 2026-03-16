@@ -1,0 +1,6 @@
+look
+go north
+look
+go south
+help
+quit
