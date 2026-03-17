@@ -21,19 +21,19 @@ MUD Game: AI 协助的项目可行性探索
 
 技术架构	：MUD 是文本交互型多人在线游戏，需支持并发连接、状态同步、命令解析。传统 WebSocket + Node.js/Python 后端可行，但实时性要求高时可能瓶颈。  
 
-          推荐使用轻量级框架如 FastAPI + WebSocket，搭配 Redis 做会话缓存；若追求极致性能可考虑 Go 或 Rust 重写核心模块。  
+-推荐使用轻量级框架如 FastAPI + WebSocket，搭配 Redis 做会话缓存；若追求极致性能可考虑 Go 或 Rust 重写核心模块。  
           
 核心玩法	：“房间-物品-角色”三元组是 MUD 基础，但如何设计“动态事件触发器”？比如玩家进入房间自动触发剧情或战斗。  
 
-          引入“事件驱动架构”，用观察者模式或消息队列（如 RabbitMQ/Kafka）解耦事件源与处理器；初期可用简单 if-else + 状态机模拟。  
+-引入“事件驱动架构”，用观察者模式或消息队列（如 RabbitMQ/Kafka）解耦事件源与处理器；初期可用简单 if-else + 状态机模拟。  
           
 业务逻辑	：用户注册→创建角色→进入世界→交互→保存进度，流程中哪些环节必须持久化？哪些可内存暂存？  
 
-          角色属性、背包、位置等关键数据必须 DB 持久化（推荐 SQLite/PostgreSQL）；临时对话、聊天室消息可内存+定期快照。  
+-角色属性、背包、位置等关键数据必须 DB 持久化（推荐 SQLite/PostgreSQL）；临时对话、聊天室消息可内存+定期快照。  
           
 扩展性	：未来是否支持插件系统？比如自定义脚本、地图编辑器？  
 
-        初期不建议做插件系统，优先保证 MVP 稳定；后期可通过 Lua 嵌入或 Webhook 接口实现扩展。  
+-初期不建议做插件系统，优先保证 MVP 稳定；后期可通过 Lua 嵌入或 Webhook 接口实现扩展。  
         
 系统边界定义（AI 辅助划定范围）  
 
@@ -66,10 +66,17 @@ MUD Game: AI 协助的项目可行性探索
 技术栈建议（AI 推荐组合） 
 
 
-层级	推荐技术	理由
-后端语言	Python (FastAPI)	快速原型开发，生态丰富，适合教学项目
-通信协议	WebSocket	支持长连接，适合实时文本交互
-数据存储	SQLite → PostgreSQL	初期轻量，后期易迁移
-缓存层	Redis	用于会话管理、排行榜、临时状态
-部署方式	Docker + GitHub Actions CI/CD	便于协作与自动化部署
-版本控制	GitHub Projects + Kanban	符合敏捷开发流程
+层级	推荐技术	                    理由  
+
+后端语言	Python (FastAPI)	          快速原型开发，生态丰富，适合教学项目  
+
+通信协议	WebSocket	                    支持长连接，适合实时文本交互  
+
+数据存储	SQLite → PostgreSQL	          初期轻量，后期易迁移  
+
+缓存层	Redis	                    用于会话管理、排行榜、临时状态  
+
+部署方式	Docker + GitHub Actions CI/CD	便于协作与自动化部署  
+
+版本控制	GitHub Projects + Kanban	符合敏捷开发流程  
+
