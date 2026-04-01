@@ -1,0 +1,12 @@
+look
+go north
+go east
+attack
+attack dragon
+attack goblin
+attack goblin
+attack goblin
+attack goblin
+look
+attack goblin
+quit
