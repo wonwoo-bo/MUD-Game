@@ -73,19 +73,25 @@ public class GameController {
                 output.add(player.getCurrentRoom().getDescription());
                 break;
             case "attack":
-                player.attack(player.getCurrentRoom().getMonster());
-                // 模拟输出
-                Monster monster = player.getCurrentRoom().getMonster();
-                if (monster != null && monster.isAlive()) {
-                    output.add("You attack the " + monster.getName() + " for " + player.getDamage() + " damage!");
-                    monster.takeDamage(player.getDamage());
-                    if (!monster.isAlive()) {
-                        output.add("You killed the " + monster.getName() + "!");
-                        player.getCurrentRoom().setMonster(null);
+                Monster targetMonster = player.getCurrentRoom().getMonster();
+                
+                if (targetMonster != null && targetMonster.isAlive()) {
+                    // 1. 先保存名字和伤害值，用于后续文本拼接
+                    String monsterName = targetMonster.getName();
+                    int damageDealt = player.getDamage();
+                    int monsterDamage = targetMonster.getDamage();
+
+                    // 2. 调用核心攻击逻辑 (此时血量已经被正确扣除，不会有双倍伤害)
+                    player.attack(targetMonster);
+
+                    // 3. 拼接前端所需的输出文本 (纯粹读状态，不改状态)
+                    output.add("You attack the " + monsterName + " for " + damageDealt + " damage!");
+                    
+                    // 注意：如果怪物死了，player.attack() 里会把它从房间移除，所以这里查 null 或者 isAlive
+                    if (player.getCurrentRoom().getMonster() == null || !targetMonster.isAlive()) {
+                        output.add("You killed the " + monsterName + "!");
                     } else {
-                        int monsterDamage = monster.getDamage();
-                        player.takeDamage(monsterDamage);
-                        output.add("The " + monster.getName() + " attacks you for " + monsterDamage + " damage!");
+                        output.add("The " + monsterName + " attacks you for " + monsterDamage + " damage!");
                         if (!player.isAlive()) {
                             output.add("You died!");
                         }
