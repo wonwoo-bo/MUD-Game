@@ -3,11 +3,11 @@
 目标：在后端未就绪时，基于 OpenAPI 契约用 Prism Mock 出可访问的接口，前端完成至少两个页面的逻辑闭环与边界测试。
 
 ## 1. OpenAPI 契约位置
-- [openapi.yaml](file:///D:/Trae_code/05-project-solo/docs/api/openapi.yaml)
+- [openapi.yaml]
 
 ## 2. 启动 Prism（Docker Compose）
 
-仓库已提供 [docker-compose.prism.yml](file:///D:/Trae_code/05-project-solo/docker-compose.prism.yml)：
+仓库已提供 [docker-compose.prism.yml]：
 
 ```bash
 docker compose -f docker-compose.prism.yml up
@@ -20,10 +20,10 @@ docker compose -f docker-compose.prism.yml up
 
 ## 3. 打开前端页面（两个核心页面）
 
-前端页面在 [frontend](file:///D:/Trae_code/05-project-solo/frontend)：
-- [index.html](file:///D:/Trae_code/05-project-solo/frontend/index.html)
-- [command.html](file:///D:/Trae_code/05-project-solo/frontend/command.html)
-- [status.html](file:///D:/Trae_code/05-project-solo/frontend/status.html)
+前端页面在 [frontend]：
+- [index.html]
+- [command.html]
+- [status.html]
 
 推荐用本地静态服务器打开（避免浏览器跨域/文件协议限制），例如：
 
