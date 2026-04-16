@@ -7,6 +7,7 @@ public class Game {
     private Scanner scanner;
     private Player player;
     private World world;
+    private boolean awaitingDirection;
 
     public Game() {
         this.running = true;
@@ -31,6 +32,17 @@ public class Game {
     }
 
     private void processCommand(String input) {
+        if (awaitingDirection) {
+            String dir = input.trim().toLowerCase();
+            if (dir.isEmpty()) {
+                System.out.println("Please enter a direction (north, south, east, west).");
+            } else {
+                player.move(dir);
+                awaitingDirection = false;
+            }
+            return;
+        }
+
         String[] parts = input.trim().toLowerCase().split("\\s+");
         if (parts.length == 0) return;
 
@@ -51,10 +63,20 @@ public class Game {
             case "go":
             case "move":
                 if (argument.isEmpty()) {
-                    System.out.println("Go where?");
+                    System.out.println("Go where? (north, south, east, west)");
+                    awaitingDirection = true;
                 } else {
                     player.move(argument);
                 }
+                break;
+            case "attack":
+                player.attack(player.getCurrentRoom().getMonster());
+                break;
+            case "status":
+                System.out.println("Player Status:");
+                System.out.println("Health: " + player.getHealth() + "/100");
+                System.out.println("Damage: " + player.getDamage());
+                System.out.println("Current Room: " + player.getCurrentRoom().getDescription().split("\\n")[0].substring(8));
                 break;
             default:
                 System.out.println("I don't understand that command.");
@@ -63,8 +85,11 @@ public class Game {
 
     private void showHelp() {
         System.out.println("Available commands:");
-        System.out.println("  go [direction] - Move to another room (north, south, east, west)");
+        System.out.println("  go [direction] - Move: one-line e.g. 'go north' or two-step:");
+        System.out.println("                   type 'go' then enter direction (north, south, east, west)");
         System.out.println("  look           - Look around the current room");
+        System.out.println("  attack         - Attack the monster in the current room");
+        System.out.println("  status         - Show your current status");
         System.out.println("  help           - Show this help message");
         System.out.println("  quit           - Exit the game");
     }

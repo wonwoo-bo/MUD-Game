@@ -1,0 +1,11 @@
+com\mud\game\Room.class
+com\mud\game\GameController.class
+com\mud\game\GameApplication.class
+com\mud\game\GameController$CommandRequest.class
+com\mud\game\GameController$GameStatus.class
+com\mud\game\Game.class
+com\mud\game\Player.class
+com\mud\game\Main.class
+com\mud\game\GameController$GameResponse.class
+com\mud\game\World.class
+com\mud\game\Monster.class

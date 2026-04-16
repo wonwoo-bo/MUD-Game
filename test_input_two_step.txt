@@ -1,0 +1,7 @@
+look
+go
+south
+look
+help
+quit
+

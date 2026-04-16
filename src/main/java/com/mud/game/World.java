@@ -12,6 +12,10 @@ public class World {
         Room forest = new Room("Forest", "A dense forest with tall trees blocking the sunlight.");
         Room cave = new Room("Cave", "A dark, damp cave. Water drips from the ceiling.");
 
+        // Add monsters
+        forest.setMonster(new Monster("Goblin", 50, 10));
+        cave.setMonster(new Monster("Troll", 80, 15));
+
         // Connect rooms
         start.setExit("north", forest);
         forest.setExit("south", start);

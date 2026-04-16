@@ -7,6 +7,7 @@ public class Room {
     private String name;
     private String description;
     private Map<String, Room> exits;
+    private Monster monster;
 
     public Room(String name, String description) {
         this.name = name;
@@ -22,10 +23,21 @@ public class Room {
         return exits.get(direction.toLowerCase());
     }
 
+    public Monster getMonster() {
+        return monster;
+    }
+
+    public void setMonster(Monster monster) {
+        this.monster = monster;
+    }
+
     public String getDescription() {
         StringBuilder sb = new StringBuilder();
         sb.append("You are in ").append(name).append(".\n");
         sb.append(description).append("\n");
+        if (monster != null && monster.isAlive()) {
+            sb.append("There is a " + monster.getName() + " here!\n");
+        }
         sb.append("Exits: ");
         if (exits.isEmpty()) {
             sb.append("None");
