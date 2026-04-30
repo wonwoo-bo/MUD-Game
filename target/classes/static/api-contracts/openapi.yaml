@@ -1,0 +1,67 @@
+openapi: 3.0.0
+info:
+  title: MUD Game API
+  description: MUD Game RESTful API
+  version: 1.0.0
+servers:
+  - url: http://localhost:8080
+    description: Local development server
+paths:
+  /api/game/command:
+    post:
+      summary: Process game command
+      description: Process a game command and return the result
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                command:
+                  type: string
+                  description: The game command to execute
+                  example: "go north"
+      responses:
+        '200':
+          description: Command processed successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  output:
+                    type: array
+                    items:
+                      type: string
+                    description: The output messages from the command
+                  health:
+                    type: integer
+                    description: The player's current health
+                  damage:
+                    type: integer
+                    description: The player's current damage
+                  room:
+                    type: string
+                    description: The current room name
+  /api/game/status:
+    get:
+      summary: Get game status
+      description: Get the current game status
+      responses:
+        '200':
+          description: Status retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  health:
+                    type: integer
+                    description: The player's current health
+                  damage:
+                    type: integer
+                    description: The player's current damage
+                  room:
+                    type: string
+                    description: The current room name
