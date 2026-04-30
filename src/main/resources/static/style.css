@@ -12,7 +12,7 @@ body {
 }
 
 .game-container {
-    max-width: 800px;
+    max-width: 1000px;
     margin: 0 auto;
     padding: 20px;
 }
@@ -25,6 +25,126 @@ body {
 .game-header h1 {
     color: #4CAF50;
     font-size: 2.5em;
+}
+
+.game-main {
+    display: flex;
+    gap: 20px;
+}
+
+.sidebar {
+    width: 250px;
+    flex-shrink: 0;
+}
+
+.panel {
+    background-color: #2d2d2d;
+    border-radius: 8px;
+    padding: 15px;
+    margin-bottom: 15px;
+}
+
+.panel h3 {
+    color: #4CAF50;
+    margin-bottom: 15px;
+    border-bottom: 1px solid #444;
+    padding-bottom: 10px;
+}
+
+.gold-display {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 1.2em;
+    font-weight: bold;
+    margin-bottom: 15px;
+    color: #ffd700;
+}
+
+.gold-icon {
+    font-size: 1.5em;
+}
+
+#gold {
+    color: #ffd700;
+}
+
+#inventory-items {
+    min-height: 150px;
+}
+
+.inventory-empty {
+    color: #666;
+    font-style: italic;
+}
+
+.inventory-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    background-color: #3d3d3d;
+    border-radius: 4px;
+    margin-bottom: 8px;
+}
+
+.item-name {
+    font-weight: bold;
+}
+
+.item-type {
+    font-size: 0.8em;
+    color: #999;
+    margin-left: 10px;
+}
+
+.sell-btn {
+    padding: 5px 10px;
+    border: none;
+    border-radius: 4px;
+    background-color: #f44336;
+    color: white;
+    font-size: 12px;
+    cursor: pointer;
+}
+
+.sell-btn:hover {
+    background-color: #d32f2f;
+}
+
+.shop-btn {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 4px;
+    background-color: #2196F3;
+    color: white;
+    font-size: 14px;
+    cursor: pointer;
+    margin-top: 15px;
+}
+
+.shop-btn:hover {
+    background-color: #1976D2;
+}
+
+.status-panel .status-item {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+.status-panel .status-label {
+    color: #999;
+}
+
+.status-panel .status-value {
+    color: #4CAF50;
+    font-weight: bold;
+}
+
+.main-content {
+    flex: 1;
 }
 
 .game-status {
@@ -139,7 +259,110 @@ body {
     background-color: #4d4d4d;
 }
 
-/* Scrollbar styling */
+.modal-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.modal-content {
+    background-color: #2d2d2d;
+    border-radius: 8px;
+    width: 90%;
+    max-width: 600px;
+    max-height: 80vh;
+    overflow: hidden;
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+    border-bottom: 1px solid #444;
+}
+
+.modal-header h2 {
+    color: #4CAF50;
+}
+
+.close-btn {
+    background: none;
+    border: none;
+    color: #999;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+.close-btn:hover {
+    color: #fff;
+}
+
+.modal-body {
+    padding: 20px;
+    max-height: 60vh;
+    overflow-y: auto;
+}
+
+.shop-items {
+    display: grid;
+    gap: 15px;
+}
+
+.shop-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+    background-color: #3d3d3d;
+    border-radius: 8px;
+}
+
+.item-info {
+    flex: 1;
+}
+
+.item-info .item-name {
+    display: block;
+    font-weight: bold;
+    font-size: 1.1em;
+    margin-bottom: 5px;
+}
+
+.item-info .item-desc {
+    display: block;
+    font-size: 0.9em;
+    color: #999;
+    margin-bottom: 5px;
+}
+
+.item-info .item-price {
+    display: block;
+    font-weight: bold;
+    color: #ffd700;
+}
+
+.buy-btn {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    background-color: #4CAF50;
+    color: white;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.buy-btn:hover {
+    background-color: #45a049;
+}
+
 .game-output::-webkit-scrollbar {
     width: 8px;
 }
@@ -156,4 +379,18 @@ body {
 
 .game-output::-webkit-scrollbar-thumb:hover {
     background: #45a049;
+}
+
+.modal-body::-webkit-scrollbar {
+    width: 8px;
+}
+
+.modal-body::-webkit-scrollbar-track {
+    background: #2d2d2d;
+    border-radius: 4px;
+}
+
+.modal-body::-webkit-scrollbar-thumb {
+    background: #4CAF50;
+    border-radius: 4px;
 }
